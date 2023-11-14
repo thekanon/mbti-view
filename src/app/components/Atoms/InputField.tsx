@@ -15,6 +15,40 @@ export interface InputProps {
   placeholder?: string;
 }
 
+// 아이콘을 렌더링하는 컴포넌트 생성
+const iconMappings: {
+  [theme: string]: {
+    [type: string]: string;
+  };
+} = {
+  light: {
+    email: "/Iconly/Bold/Message.svg",
+    username: "/Iconly/Bold/Profile.svg",
+    password: "/Iconly/Bold/Lock.svg",
+    phone: "/Iconly/Bold/Call.svg",
+  },
+  dark: {
+    email: "/Iconly/Bold/Dark/Message.svg",
+    username: "/Iconly/Bold/Dark/Profile.svg",
+    password: "/Iconly/Bold/Dark/Lock.svg",
+    phone: "/Iconly/Bold/Dark/Call.svg",
+  },
+};
+
+const Icon = ({ type, theme }: { type: string; theme: string }) => {
+  const iconSrc = iconMappings[theme]?.[type];
+
+  if (iconSrc) {
+    return (
+      <div className="ml-2">
+        <Image src={iconSrc} alt={type + " Icon"} width={20} height={20} />
+      </div>
+    );
+  }
+
+  return null;
+};
+
 export const InputField = ({
   status = "default",
   type = "default",
@@ -22,8 +56,7 @@ export const InputField = ({
   placeholder = "",
 }: InputProps) => {
   // Tailwind 클래스를 조합하여 스타일을 정의합니다.
-  const baseClasses =
-    "Body Large Semibold greyscale flex p-5 items-center gap-3 ";
+  const baseClasses = "Large Semibold flex p-2 items-center gap-3 flex-grow";
 
   const statusClasses = {
     active:
@@ -37,27 +70,18 @@ export const InputField = ({
 
   return (
     <div
-      className={`my-2 flex items-center gap-3 ${theme}
+      className={`my-2 flex items-center gap-3 p-3 input-field ${statusClasses[status]} ${theme}
     `}
     >
-      {type === "email" && (
-        <div
-          className="mr-2 ml-2
-        "
-        >
-          <Image
-            src="/Iconly/Bold/Message.svg" // `public` 폴더 안의 경로에서 시작
-            alt="Email Icon"
-            width={20} // 적절한 크기 설정
-            height={20}
-          />
-        </div>
-      )}
-
+      <Icon type={type} theme={theme} />
       <input
         type={inputType}
-        className={`${baseClasses} ${statusClasses[status]}`}
-        placeholder={placeholder === "" && type !== "default" ? type : ""}
+        className={`${baseClasses} focus:outline-none`}
+        placeholder={
+          placeholder === "" && type !== "default" && type !== "code"
+            ? type
+            : ""
+        }
       />
     </div>
   );
