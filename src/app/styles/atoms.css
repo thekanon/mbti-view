@@ -1,3 +1,4 @@
+/* inputField */
 /* 공통 스타일을 .input-field 클래스에 정의합니다. */
 .input-field {
   border-radius: 16px;
@@ -37,4 +38,25 @@
 /* 공통 부모 클래스를 사용하여 모든 input 요소에 대한 스타일을 적용합니다. */
 .input-field input {
   background: transparent;
+}
+
+/* Button */
+.button-component {
+}
+
+.button-component.primary {
+  border-bottom: 5px solid var(--alerts-status-button-disabled, #543acc);
+  background: var(--primary-500, #6949ff);
+
+  color: var(--others-white, #fff);
+}
+.button-component.secondary {
+  border-bottom: 5px solid var(--primary-200, #c3b6ff);
+  background: var(--primary-100, #f0edff);
+
+  color: var(--primary-500, #6949ff);
+}
+.button-component.additional {
+  border-bottom: 5px solid var(--greyscale-300, #e0e0e0);
+  background: var(--others-white, #fff);
 }

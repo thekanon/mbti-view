@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Icon from "./Icon"; // Adjust the import path as necessary
 
 export interface InputProps {
   status: "active" | "fill" | "default";
@@ -14,40 +14,6 @@ export interface InputProps {
   theme: "light" | "dark";
   placeholder?: string;
 }
-
-// 아이콘을 렌더링하는 컴포넌트 생성
-const iconMappings: {
-  [theme: string]: {
-    [type: string]: string;
-  };
-} = {
-  light: {
-    email: "/Iconly/Bold/Message.svg",
-    username: "/Iconly/Bold/Profile.svg",
-    password: "/Iconly/Bold/Lock.svg",
-    phone: "/Iconly/Bold/Call.svg",
-  },
-  dark: {
-    email: "/Iconly/Bold/Dark/Message.svg",
-    username: "/Iconly/Bold/Dark/Profile.svg",
-    password: "/Iconly/Bold/Dark/Lock.svg",
-    phone: "/Iconly/Bold/Dark/Call.svg",
-  },
-};
-
-const Icon = ({ type, theme }: { type: string; theme: string }) => {
-  const iconSrc = iconMappings[theme]?.[type];
-
-  if (iconSrc) {
-    return (
-      <div className="ml-2">
-        <Image src={iconSrc} alt={type + " Icon"} width={20} height={20} />
-      </div>
-    );
-  }
-
-  return null;
-};
 
 export const InputField = ({
   status = "default",
