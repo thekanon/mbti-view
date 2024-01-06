@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  alias: {
+    "@": require("path").resolve(__dirname, "src"),
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

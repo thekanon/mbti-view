@@ -1,5 +1,4 @@
 import React from "react";
-import { InputField } from "./components/Atoms/InputField";
 
 export default function Home() {
   return (
@@ -9,12 +8,6 @@ export default function Home() {
         {/* 이 요소는 Nunito 폰트를 사용합니다 */}
         안녕하세요, 이것은 Nunito 폰트로 표시됩니다.
       </div>
-      <InputField
-        status="active"
-        theme="light"
-        placeholder="이메일"
-        type="email"
-      />
     </div>
   );
 }
